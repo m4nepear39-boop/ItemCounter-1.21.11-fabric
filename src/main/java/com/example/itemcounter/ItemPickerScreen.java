@@ -120,7 +120,12 @@ public class ItemPickerScreen extends Screen {
                 boolean isSelected = entry.itemId().equals(cfg.item) && entry.potionId().equals(cfg.potion);
 
                 context.fill(cx + 1, cy + 1, cx + CELL - 1, cy + CELL - 1, (isHover ? 0xA0FFFFFF : 0x40FFFFFF));
-                if (isSelected) context.drawBorder(cx, cy, CELL, CELL, 0xFFFFFF55);
+                if (isSelected) {
+    context.fill(cx, cy, cx + CELL, cy + 1, 0xFFFFFF55);
+    context.fill(cx, cy + CELL - 1, cx + CELL, cy + CELL, 0xFFFFFF55);
+    context.fill(cx, cy, cx + 1, cy + CELL, 0xFFFFFF55);
+    context.fill(cx + CELL - 1, cy, cx + CELL, cy + CELL, 0xFFFFFF55);
+                }
                 context.drawItem(entry.stack(), cx + 2, cy + 2);
                 if (isHover) hovered = entry;
             }
